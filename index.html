@@ -38,6 +38,25 @@
     .badge-card:hover {
       transform: translateY(-4px);
     }
+    /* Animasi jalan raya & titik checkpoint interaktif */
+    @keyframes dashMove {
+      to {
+        stroke-dashoffset: -40;
+      }
+    }
+    .road-dash-animate {
+      animation: dashMove 1.6s linear infinite;
+    }
+    .checkpoint-node {
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    .checkpoint-node:hover {
+      transform: translateY(-4px) scale(1.03);
+    }
+    .checkpoint-active {
+      ring: 4px;
+      transform: translateY(-4px) scale(1.04);
+    }
     @media print {
       .no-print {
         display: none !important;
@@ -422,6 +441,346 @@
 
     </div>
 
+    <!-- Bahagian Road Map Interaktif ke Arah Anugerah Baden Powell (BPA) -->
+    <section class="mb-12" id="roadmap-bpa">
+      <div class="bg-white rounded-3xl p-6 sm:p-8 border border-sky-100 shadow-sm print-card overflow-hidden relative">
+
+        <!-- Tajuk Seksyen -->
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-5 mb-5 border-b border-sky-100 relative z-10">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-800 text-xs font-extrabold uppercase tracking-wider mb-2 border border-amber-200">
+              <i data-lucide="award" class="w-3.5 h-3.5 text-amber-600"></i>
+              <span>Skim Latihan Pengakap Kelana</span>
+            </div>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-slate-900 font-heading flex items-center gap-2.5">
+              <i data-lucide="route" class="w-6 h-6 text-sky-600"></i>
+              Road Map ke Arah Anugerah Baden Powell (BPA)
+            </h2>
+            <div class="mt-2 inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-sky-50 border border-sky-200 text-sky-800 text-xs sm:text-sm font-semibold">
+              <i data-lucide="mouse-pointer-click" class="w-4 h-4 text-sky-600 animate-bounce flex-shrink-0"></i>
+              <span>Klik pada mana-mana titik checkpoint (01 – 05) di atas laluan untuk maklumat lanjut.</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col sm:items-end gap-1.5 bg-sky-50/80 px-4 py-2.5 rounded-2xl border border-sky-200/80 flex-shrink-0">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-sky-600">No. Sijil Kelana</span>
+            <span class="font-mono text-xs sm:text-sm font-extrabold text-slate-800">SPK-060428090014-C2B34</span>
+            <span class="text-[11px] font-medium text-slate-500">Jabatan Rekabentuk & Komunikasi Visual (JRKV)</span>
+          </div>
+        </div>
+
+        <!-- Visual Jalan Raya Berbukit Interaktif -->
+        <div class="relative z-10">
+          
+          <!-- Paparan Desktop/Tablet: Pemandangan Bukit, Awan, Pokok & Jalan Raya Mendaki ke Puncak BPA -->
+          <div class="hidden lg:block relative rounded-3xl overflow-hidden border-2 border-sky-200 shadow-inner bg-gradient-to-b from-sky-300 via-sky-100 to-emerald-100 h-[360px]">
+            
+            <!-- SVG Pemandangan Bukit-Bukau & Jalan Raya -->
+            <svg viewBox="0 0 1100 360" class="w-full h-full" preserveAspectRatio="none">
+              <defs>
+                <!-- Langit -->
+                <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#38bdf8" />
+                  <stop offset="55%" stop-color="#bae6fd" />
+                  <stop offset="100%" stop-color="#f0f9ff" />
+                </linearGradient>
+                <!-- Bukit Jauh -->
+                <linearGradient id="farHillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#7dd3fc" />
+                  <stop offset="100%" stop-color="#38bdf8" />
+                </linearGradient>
+                <!-- Bukit Tengah -->
+                <linearGradient id="midHillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#34d399" />
+                  <stop offset="100%" stop-color="#059669" />
+                </linearGradient>
+                <!-- Bukit Hadapan (Lembah & Lereng) -->
+                <linearGradient id="frontHillGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#10b981" />
+                  <stop offset="100%" stop-color="#047857" />
+                </linearGradient>
+                <!-- Jalan Asfalt -->
+                <linearGradient id="roadAsphalt" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stop-color="#1e293b" />
+                  <stop offset="50%" stop-color="#334155" />
+                  <stop offset="100%" stop-color="#0f172a" />
+                </linearGradient>
+                <filter id="roadDrop" x="-5%" y="-10%" width="110%" height="130%">
+                  <feDropShadow dx="0" dy="8" stdDeviation="6" flood-color="#064e3b" flood-opacity="0.35"/>
+                </filter>
+              </defs>
+
+              <!-- Latar Langit -->
+              <rect width="1100" height="360" fill="url(#skyGrad)" />
+
+              <!-- Matahari / Cahaya Puncak di Kanan Atas -->
+              <circle cx="990" cy="65" r="42" fill="#fde047" opacity="0.45" />
+              <circle cx="990" cy="65" r="26" fill="#facc15" opacity="0.85" />
+
+              <!-- Awan Lembut -->
+              <g fill="#ffffff" opacity="0.75">
+                <path d="M120 65 Q135 45 160 55 Q180 40 205 55 Q225 55 225 72 Q225 85 205 85 L125 85 Q105 85 105 72 Q105 62 120 65 Z" />
+                <path d="M470 50 Q485 32 510 42 Q530 28 555 42 Q575 42 575 58 Q575 70 555 70 L475 70 Q458 70 458 58 Q458 48 470 50 Z" />
+                <path d="M760 45 Q772 30 792 38 Q810 26 830 38 Q845 38 845 50 Q845 60 830 60 L765 60 Q750 60 750 50 Q750 42 760 45 Z" />
+              </g>
+
+              <!-- Lapisan Bukit Jauh (Pergunungan) -->
+              <path d="M0 220 Q160 110 340 190 T700 155 T1100 105 L1100 360 L0 360 Z" fill="url(#farHillGrad)" opacity="0.65" />
+
+              <!-- Lapisan Bukit Tengah (Naik Turun) -->
+              <path d="M0 245 Q210 135 420 225 T840 165 T1100 125 L1100 360 L0 360 Z" fill="url(#midHillGrad)" />
+
+              <!-- Lapisan Bukit Hadapan (Lereng & Lembah) -->
+              <path d="M0 285 Q180 205 380 280 T790 215 T1100 165 L1100 360 L0 360 Z" fill="url(#frontHillGrad)" />
+
+              <!-- Pokok Pain Pengakap (Hiasan Bukit) -->
+              <g fill="#065f46" opacity="0.85">
+                <polygon points="85,225 72,255 98,255" />
+                <polygon points="85,212 75,236 95,236" />
+                <polygon points="360,192 348,220 372,220" />
+                <polygon points="360,180 351,202 369,202" />
+                <polygon points="620,255 606,288 634,288" />
+                <polygon points="620,240 609,266 631,266" />
+                <polygon points="895,148 883,176 907,176" />
+                <polygon points="895,136 886,158 904,158" />
+              </g>
+
+              <!-- Bahu Jalan Raya (Menaiki Bukit -> Menuruni Lembah -> Mendaki ke Puncak BPA) -->
+              <path d="M 45 290 C 145 290, 185 165, 295 165 C 405 165, 435 285, 550 285 C 665 285, 695 165, 805 165 C 905 165, 945 105, 1045 105" 
+                    fill="none" stroke="#fef08a" stroke-width="46" stroke-linecap="round" opacity="0.9" />
+
+              <!-- Badan Jalan Asfalt -->
+              <path d="M 45 290 C 145 290, 185 165, 295 165 C 405 165, 435 285, 550 285 C 665 285, 695 165, 805 165 C 905 165, 945 105, 1045 105" 
+                    fill="none" stroke="url(#roadAsphalt)" stroke-width="36" stroke-linecap="round" filter="url(#roadDrop)" />
+
+              <!-- Garisan Tengah Jalan Putus-putus -->
+              <path d="M 45 290 C 145 290, 185 165, 295 165 C 405 165, 435 285, 550 285 C 665 285, 695 165, 805 165 C 905 165, 945 105, 1045 105" 
+                    fill="none" stroke="#facc15" stroke-width="3.5" stroke-dasharray="12 10" stroke-linecap="round" class="road-dash-animate" />
+            </svg>
+
+            <!-- Overlay 5 Titik Checkpoint Interaktif di Atas Jalan -->
+            <div class="absolute inset-0 pointer-events-none">
+              
+              <!-- Titik 01: Lencana Keahlian (Kaki Bukit) -->
+              <button type="button" onclick="openRoadmapModal(0)"
+                class="pointer-events-auto checkpoint-node absolute left-[3%] top-[73%] -translate-y-1/2 flex flex-col items-center group focus:outline-none">
+                <span class="mb-1.5 px-2.5 py-0.5 rounded-full bg-sky-600 text-white text-[10px] font-extrabold shadow-md whitespace-nowrap">
+                  2 Okt 2024
+                </span>
+                <div class="w-12 h-12 rounded-2xl bg-sky-500 text-white border-4 border-white shadow-xl flex items-center justify-center font-heading font-extrabold text-sm group-hover:ring-4 group-hover:ring-amber-300 transition">
+                  01
+                </div>
+                <div class="mt-1.5 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-sky-200 shadow-md text-center w-36 group-hover:border-sky-500">
+                  <p class="text-xs font-extrabold text-slate-900 leading-tight">Lencana Keahlian</p>
+                  <p class="text-[10px] font-bold text-sky-600 mt-0.5 flex items-center justify-center gap-1">
+                    <span>Klik info</span> <i data-lucide="external-link" class="w-2.5 h-2.5"></i>
+                  </p>
+                </div>
+              </button>
+
+              <!-- Titik 02: Lencana Kemahiran (Puncak Bukit Pertama) -->
+              <button type="button" onclick="openRoadmapModal(1)"
+                class="pointer-events-auto checkpoint-node absolute left-[22%] top-[41%] -translate-y-1/2 flex flex-col items-center group focus:outline-none">
+                <span class="mb-1.5 px-2.5 py-0.5 rounded-full bg-amber-500 text-slate-950 text-[10px] font-extrabold shadow-md whitespace-nowrap">
+                  12 Malam Perkhemahan
+                </span>
+                <div class="w-12 h-12 rounded-2xl bg-amber-400 text-slate-950 border-4 border-white shadow-xl flex items-center justify-center font-heading font-extrabold text-sm group-hover:ring-4 group-hover:ring-sky-400 transition">
+                  02
+                </div>
+                <div class="mt-1.5 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-amber-200 shadow-md text-center w-36 group-hover:border-amber-500">
+                  <p class="text-xs font-extrabold text-slate-900 leading-tight">Lencana Kemahiran</p>
+                  <p class="text-[10px] font-bold text-amber-700 mt-0.5 flex items-center justify-center gap-1">
+                    <span>Klik info</span> <i data-lucide="external-link" class="w-2.5 h-2.5"></i>
+                  </p>
+                </div>
+              </button>
+
+              <!-- Titik 03: Lencana Perkhidmatan (Lembah Tengah) -->
+              <button type="button" onclick="openRoadmapModal(2)"
+                class="pointer-events-auto checkpoint-node absolute left-[44%] top-[73%] -translate-y-1/2 flex flex-col items-center group focus:outline-none">
+                <span class="mb-1.5 px-2.5 py-0.5 rounded-full bg-blue-600 text-white text-[10px] font-extrabold shadow-md whitespace-nowrap">
+                  Jumlah: 323 Jam
+                </span>
+                <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white border-4 border-white shadow-xl flex items-center justify-center font-heading font-extrabold text-sm group-hover:ring-4 group-hover:ring-amber-300 transition">
+                  03
+                </div>
+                <div class="mt-1.5 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-blue-200 shadow-md text-center w-40 group-hover:border-blue-500">
+                  <p class="text-xs font-extrabold text-slate-900 leading-tight">Lencana Perkhidmatan</p>
+                  <p class="text-[10px] font-bold text-blue-600 mt-0.5 flex items-center justify-center gap-1">
+                    <span>Klik info</span> <i data-lucide="external-link" class="w-2.5 h-2.5"></i>
+                  </p>
+                </div>
+              </button>
+
+              <!-- Titik 04: Lencana Pengembaraan (Bukit Kedua) -->
+              <button type="button" onclick="openRoadmapModal(3)"
+                class="pointer-events-auto checkpoint-node absolute left-[66%] top-[41%] -translate-y-1/2 flex flex-col items-center group focus:outline-none">
+                <span class="mb-1.5 px-2.5 py-0.5 rounded-full bg-cyan-600 text-white text-[10px] font-extrabold shadow-md whitespace-nowrap">
+                  Jarak: 898 km
+                </span>
+                <div class="w-12 h-12 rounded-2xl bg-cyan-500 text-white border-4 border-white shadow-xl flex items-center justify-center font-heading font-extrabold text-sm group-hover:ring-4 group-hover:ring-amber-300 transition">
+                  04
+                </div>
+                <div class="mt-1.5 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-xl border border-cyan-200 shadow-md text-center w-40 group-hover:border-cyan-500">
+                  <p class="text-xs font-extrabold text-slate-900 leading-tight">Lencana Pengembaraan</p>
+                  <p class="text-[10px] font-bold text-cyan-700 mt-0.5 flex items-center justify-center gap-1">
+                    <span>Klik info</span> <i data-lucide="external-link" class="w-2.5 h-2.5"></i>
+                  </p>
+                </div>
+              </button>
+
+              <!-- Titik 05: Lencana Kepimpinan & Puncak BPA -->
+              <button type="button" onclick="openRoadmapModal(4)"
+                class="pointer-events-auto checkpoint-node absolute right-[2%] top-[27%] -translate-y-1/2 flex flex-col items-center group focus:outline-none">
+                <span class="mb-1.5 px-3 py-0.5 rounded-full bg-amber-400 text-slate-950 text-[10px] font-extrabold shadow-md whitespace-nowrap flex items-center gap-1 border border-amber-500">
+                  <i data-lucide="trophy" class="w-3 h-3 text-amber-800"></i> Puncak BPA
+                </span>
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-indigo-600 via-sky-500 to-amber-400 text-white border-4 border-white shadow-2xl flex items-center justify-center font-heading font-extrabold text-sm group-hover:ring-4 group-hover:ring-amber-300 transition">
+                  05
+                </div>
+                <div class="mt-1.5 bg-white/95 backdrop-blur-sm px-3 py-1.5 rounded-xl border-2 border-amber-400 shadow-lg text-center w-44">
+                  <p class="text-xs font-extrabold text-slate-900 leading-tight">Lencana Kepimpinan</p>
+                  <p class="text-[10px] font-bold text-indigo-700 mt-0.5 flex items-center justify-center gap-1">
+                    <span>Klik info</span> <i data-lucide="external-link" class="w-2.5 h-2.5"></i>
+                  </p>
+                </div>
+              </button>
+
+            </div>
+          </div>
+
+          <!-- Paparan Mobile & Tablet Kecil: Laluan Jalan Raya Berbukit Menegak -->
+          <div class="lg:hidden relative rounded-3xl p-4 bg-gradient-to-b from-sky-200 via-sky-50 to-emerald-100 border border-sky-200">
+            <div class="relative pl-10 pr-1 py-2 space-y-4">
+              <!-- Garisan Jalan Raya Menegak -->
+              <div class="absolute left-5 top-4 bottom-4 w-4 bg-slate-800 rounded-full border-2 border-amber-200 flex justify-center overflow-hidden shadow">
+                <div class="w-0.5 h-full border-l-2 border-dashed border-amber-400"></div>
+              </div>
+
+              <!-- Item Mobile 01 -->
+              <button type="button" onclick="openRoadmapModal(0)"
+                class="w-full text-left relative bg-white/95 hover:bg-white p-3.5 rounded-2xl border border-sky-200 shadow-sm transition flex items-center justify-between gap-3">
+                <span class="absolute -left-[30px] w-7 h-7 rounded-full bg-sky-500 text-white text-xs font-extrabold flex items-center justify-center border-2 border-white shadow">01</span>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-200">2 Okt 2024 &bull; Pelantikan Rasmi</span>
+                  <h3 class="text-sm font-extrabold text-slate-900 mt-1">Peringkat 01: Lencana Keahlian</h3>
+                </div>
+                <span class="text-[11px] font-bold text-sky-600 flex items-center gap-1 flex-shrink-0">Info <i data-lucide="chevron-right" class="w-4 h-4"></i></span>
+              </button>
+
+              <!-- Item Mobile 02 -->
+              <button type="button" onclick="openRoadmapModal(1)"
+                class="w-full text-left relative bg-white/95 hover:bg-white p-3.5 rounded-2xl border border-amber-200 shadow-sm transition flex items-center justify-between gap-3">
+                <span class="absolute -left-[30px] w-7 h-7 rounded-full bg-amber-400 text-slate-950 text-xs font-extrabold flex items-center justify-center border-2 border-white shadow">02</span>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-200">Sept 2024 – Sept 2026 &bull; 12 Malam</span>
+                  <h3 class="text-sm font-extrabold text-slate-900 mt-1">Peringkat 02: Lencana Kemahiran</h3>
+                </div>
+                <span class="text-[11px] font-bold text-amber-700 flex items-center gap-1 flex-shrink-0">Info <i data-lucide="chevron-right" class="w-4 h-4"></i></span>
+              </button>
+
+              <!-- Item Mobile 03 -->
+              <button type="button" onclick="openRoadmapModal(2)"
+                class="w-full text-left relative bg-white/95 hover:bg-white p-3.5 rounded-2xl border border-blue-200 shadow-sm transition flex items-center justify-between gap-3">
+                <span class="absolute -left-[30px] w-7 h-7 rounded-full bg-blue-600 text-white text-xs font-extrabold flex items-center justify-center border-2 border-white shadow">03</span>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-200">Okt 2024 – Okt 2026 &bull; 323 Jam</span>
+                  <h3 class="text-sm font-extrabold text-slate-900 mt-1">Peringkat 03: Lencana Perkhidmatan</h3>
+                </div>
+                <span class="text-[11px] font-bold text-blue-600 flex items-center gap-1 flex-shrink-0">Info <i data-lucide="chevron-right" class="w-4 h-4"></i></span>
+              </button>
+
+              <!-- Item Mobile 04 -->
+              <button type="button" onclick="openRoadmapModal(3)"
+                class="w-full text-left relative bg-white/95 hover:bg-white p-3.5 rounded-2xl border border-cyan-200 shadow-sm transition flex items-center justify-between gap-3">
+                <span class="absolute -left-[30px] w-7 h-7 rounded-full bg-cyan-500 text-white text-xs font-extrabold flex items-center justify-center border-2 border-white shadow">04</span>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-cyan-700 bg-cyan-50 px-2 py-0.5 rounded-md border border-cyan-200">26–28 Dis 2025 &bull; Jarak 898 km</span>
+                  <h3 class="text-sm font-extrabold text-slate-900 mt-1">Peringkat 04: Lencana Pengembaraan</h3>
+                </div>
+                <span class="text-[11px] font-bold text-cyan-700 flex items-center gap-1 flex-shrink-0">Info <i data-lucide="chevron-right" class="w-4 h-4"></i></span>
+              </button>
+
+              <!-- Item Mobile 05 -->
+              <button type="button" onclick="openRoadmapModal(4)"
+                class="w-full text-left relative bg-white/95 hover:bg-white p-3.5 rounded-2xl border-2 border-amber-400 shadow-md transition flex items-center justify-between gap-3">
+                <span class="absolute -left-[30px] w-7 h-7 rounded-full bg-indigo-600 text-white text-xs font-extrabold flex items-center justify-center border-2 border-white shadow">05</span>
+                <div>
+                  <span class="text-[10px] font-bold uppercase text-indigo-700 bg-indigo-50 px-2 py-0.5 rounded-md border border-indigo-200">2024 – 2026 &bull; Puncak BPA</span>
+                  <h3 class="text-sm font-extrabold text-slate-900 mt-1">Peringkat 05: Lencana Kepimpinan</h3>
+                </div>
+                <span class="text-[11px] font-bold text-indigo-700 flex items-center gap-1 flex-shrink-0">Info <i data-lucide="chevron-right" class="w-4 h-4"></i></span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Bar Rumusan Ringkas Bawah Peta -->
+          <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-slate-600 bg-sky-50/80 px-4 py-3 rounded-2xl border border-sky-100">
+            <div class="flex items-center gap-2">
+              <i data-lucide="trophy" class="w-4 h-4 text-amber-500 flex-shrink-0"></i>
+              <span><strong>Pencapaian Keseluruhan:</strong> 12 Malam Perkhemahan &bull; 323 Jam Khidmat &bull; 898 km Kembara &bull; Exco Pentadbiran & ARPRM Perak</span>
+            </div>
+            <span class="font-extrabold text-sky-700 whitespace-nowrap">Destinasi: Anugerah Baden Powell (BPA)</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Pop-up (Modal) Butiran Peringkat Road Map -->
+    <div id="roadmapModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 bg-slate-950/65 backdrop-blur-sm no-print" onclick="closeRoadmapModalOnBackdrop(event)">
+      <div class="bg-white w-full max-w-2xl rounded-3xl shadow-2xl border-2 border-sky-200 overflow-hidden transform transition-all animate-[fadeIn_0.2s_ease-out]" onclick="event.stopPropagation()">
+        
+        <!-- Header Modal -->
+        <div class="bg-gradient-to-r from-sky-600 via-blue-600 to-sky-700 p-5 sm:p-6 text-white flex items-start justify-between gap-4">
+          <div class="flex items-center gap-3.5">
+            <div id="modalBadgeIcon" class="w-12 h-12 rounded-2xl bg-white/20 backdrop-blur-md text-amber-300 flex items-center justify-center border border-white/30 flex-shrink-0">
+              <i data-lucide="shield-check" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <div class="flex flex-wrap items-center gap-2">
+                <span id="modalStageTag" class="px-2.5 py-0.5 rounded-md text-[11px] font-extrabold uppercase tracking-wider bg-amber-400 text-slate-950">
+                  PERINGKAT 01
+                </span>
+                <span id="modalDuration" class="px-2.5 py-0.5 rounded-md text-xs font-semibold bg-white/20 text-white border border-white/25">
+                  2 Oktober 2024 • Pelantikan Rasmi
+                </span>
+              </div>
+              <h3 id="modalTitle" class="text-xl sm:text-2xl font-extrabold font-heading mt-1">
+                Lencana Keahlian
+              </h3>
+            </div>
+          </div>
+
+          <button type="button" onclick="closeRoadmapModal()" class="p-2 rounded-xl bg-white/15 hover:bg-white/30 text-white transition flex-shrink-0" aria-label="Tutup">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Kandungan Aktiviti Modal -->
+        <div class="p-5 sm:p-6 max-h-[65vh] overflow-y-auto bg-sky-50/40">
+          <p class="text-xs font-extrabold uppercase tracking-wider text-sky-800 mb-3 flex items-center gap-1.5">
+            <i data-lucide="list-checks" class="w-4 h-4 text-sky-600"></i>
+            Ringkasan Aktiviti Utama & Pencapaian:
+          </p>
+          <ul id="modalActivitiesList" class="space-y-3 text-xs sm:text-sm text-slate-700">
+            <!-- Diisi oleh JavaScript -->
+          </ul>
+        </div>
+
+        <!-- Footer Modal dengan Butang Navigasi Peringkat -->
+        <div class="px-5 py-4 bg-white border-t border-sky-100 flex items-center justify-between gap-2">
+          <button type="button" onclick="stepRoadmapModal(-1)" class="px-3.5 py-2 rounded-xl bg-sky-50 hover:bg-sky-100 text-sky-800 border border-sky-200 text-xs font-bold flex items-center gap-1.5 transition">
+            <i data-lucide="arrow-left" class="w-4 h-4"></i> Peringkat Sebelum
+          </button>
+          <span id="modalCounter" class="text-xs font-bold text-slate-400">1 / 5</span>
+          <button type="button" onclick="stepRoadmapModal(1)" class="px-3.5 py-2 rounded-xl bg-sky-600 hover:bg-sky-700 text-white text-xs font-bold flex items-center gap-1.5 transition shadow-sm">
+            Peringkat Seterusnya <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
     <!-- Bahagian Modul Kemahiran & Lencana Kelana (Diletakkan selepas Rekod & Kad Keahlian) -->
     <section class="mb-10 no-print">
       <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-4 gap-2">
@@ -444,7 +803,7 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
         
         <!-- Butang 1: Lencana Keahlian -->
-        <a href="https://farihan-ptss.github.io/bpa_fik/keahlian.html" class="badge-card bg-white p-4 rounded-2xl border-2 border-sky-100 hover:border-sky-500 hover:shadow-lg shadow-sm flex flex-col justify-between group relative overflow-hidden">
+        <a href="https://farihan-ptss.github.io/bpa_fik/keahlian.html" target="_blank" class="badge-card bg-white p-4 rounded-2xl border-2 border-sky-100 hover:border-sky-500 hover:shadow-lg shadow-sm flex flex-col justify-between group relative overflow-hidden">
           <div class="w-full h-1 bg-sky-500 absolute top-0 left-0"></div>
           <div>
             <div class="flex items-center justify-between mb-3">
@@ -463,9 +822,28 @@
             <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
           </div>
         </a>
-
+<!-- Butang 4: Lencana Kemahiran -->
+        <a href="https://farihan-ptss.github.io/bpa_fik/kemahiran.html" target="_blank" class="badge-card bg-white p-4 rounded-2xl border-2 border-amber-200 hover:border-amber-500 hover:shadow-lg shadow-sm flex flex-col justify-between group relative overflow-hidden">
+          <div class="w-full h-1 bg-amber-500 absolute top-0 left-0"></div>
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors flex items-center justify-center shadow-sm">
+                <i data-lucide="wrench" class="w-5 h-5"></i>
+              </div>
+              <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-300">Kemahiran</span>
+            </div>
+            <h3 class="font-bold text-sm text-slate-900 group-hover:text-amber-700 font-heading leading-snug">
+              Lencana Kemahiran
+            </h3>
+            <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Simpulan & ikatan, pioneering, isyarat & perkhemahan.</p>
+          </div>
+          <div class="mt-4 pt-2.5 border-t border-slate-100 text-[11px] font-semibold text-amber-700 flex items-center justify-between group-hover:text-amber-900">
+            <span>Buka Modul</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
+          </div>
+        </a>
         <!-- Butang 2: Lencana Perkhidmatan -->
-        <a href="https://farihan-ptss.github.io/bpa_fik/perkhidmatan.html" class="badge-card bg-white p-4 rounded-2xl border-2 border-blue-100 hover:border-blue-500 hover:shadow-lg shadow-sm flex flex-col justify-between group relative overflow-hidden">
+        <a href="https://farihan-ptss.github.io/bpa_fik/perkhidmatan.html" target="_blank" class="badge-card bg-white p-4 rounded-2xl border-2 border-blue-100 hover:border-blue-500 hover:shadow-lg shadow-sm flex flex-col justify-between group relative overflow-hidden">
           <div class="w-full h-1 bg-blue-600 absolute top-0 left-0"></div>
           <div>
             <div class="flex items-center justify-between mb-3">
@@ -486,7 +864,7 @@
         </a>
 
         <!-- Butang 3: Lencana Pengembaraan -->
-        <a href="https://farihan-ptss.github.io/bpa_fik/kembara.html" class="badge-card bg-white p-4 rounded-2xl border-2 border-cyan-100 hover:border-cyan-500 hover:shadow-lg shadow-sm flex flex-col justify-between group relative overflow-hidden">
+        <a href="https://farihan-ptss.github.io/bpa_fik/kembara.html" target="_blank" class="badge-card bg-white p-4 rounded-2xl border-2 border-cyan-100 hover:border-cyan-500 hover:shadow-lg shadow-sm flex flex-col justify-between group relative overflow-hidden">
           <div class="w-full h-1 bg-cyan-500 absolute top-0 left-0"></div>
           <div>
             <div class="flex items-center justify-between mb-3">
@@ -506,29 +884,10 @@
           </div>
         </a>
 
-        <!-- Butang 4: Lencana Kemahiran -->
-        <a href="https://farihan-ptss.github.io/bpa_fik/kemahiran.html" class="badge-card bg-white p-4 rounded-2xl border-2 border-amber-200 hover:border-amber-500 hover:shadow-lg shadow-sm flex flex-col justify-between group relative overflow-hidden">
-          <div class="w-full h-1 bg-amber-500 absolute top-0 left-0"></div>
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 group-hover:bg-amber-500 group-hover:text-slate-950 transition-colors flex items-center justify-center shadow-sm">
-                <i data-lucide="wrench" class="w-5 h-5"></i>
-              </div>
-              <span class="text-[10px] font-extrabold uppercase tracking-wider text-amber-800 bg-amber-50 px-2 py-0.5 rounded-md border border-amber-300">Kemahiran</span>
-            </div>
-            <h3 class="font-bold text-sm text-slate-900 group-hover:text-amber-700 font-heading leading-snug">
-              Lencana Kemahiran
-            </h3>
-            <p class="text-[11px] text-slate-500 mt-1 line-clamp-2">Simpulan & ikatan, pioneering, isyarat & perkhemahan.</p>
-          </div>
-          <div class="mt-4 pt-2.5 border-t border-slate-100 text-[11px] font-semibold text-amber-700 flex items-center justify-between group-hover:text-amber-900">
-            <span>Buka Modul</span>
-            <i data-lucide="arrow-right" class="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform"></i>
-          </div>
-        </a>
+        
 
         <!-- Butang 5: Lencana Pilihan - Kepimpinan -->
-        <a href="https://farihan-ptss.github.io/bpa_fik/kepimpinan.html" class="badge-card bg-white p-4 rounded-2xl border-2 border-indigo-100 hover:border-indigo-500 hover:shadow-lg shadow-sm flex flex-col justify-between group relative overflow-hidden">
+        <a href="https://farihan-ptss.github.io/bpa_fik/kepimpinan.html" target="_blank" class="badge-card bg-white p-4 rounded-2xl border-2 border-indigo-100 hover:border-indigo-500 hover:shadow-lg shadow-sm flex flex-col justify-between group relative overflow-hidden">
           <div class="w-full h-1 bg-indigo-600 absolute top-0 left-0"></div>
           <div>
             <div class="flex items-center justify-between mb-3">
@@ -553,6 +912,46 @@
 
   </main>
 
+   <!-- Bekas Responsif Iframe Flipbook -->
+ <!-- 4. FLIPBOOK INTERAKTIF DOKUMEN ASAL LAPORAN KEMAHIRAN -->
+    <section id="flipbook-section" class="scroll-mt-24">
+      <div class="bg-white rounded-3xl shadow-sm border border-slate-200 p-6 sm:p-8 overflow-hidden">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 border-b border-slate-200 gap-3">
+          <div>
+            <span class="text-xs font-extrabold uppercase tracking-wider text-amber-800 bg-amber-100 px-2.5 py-1 rounded-md">
+              DOKUMEN ASAL DIGITAL
+            </span>
+            <h2 class="text-xl sm:text-2xl font-bold font-display text-slate-900 mt-2 flex items-center gap-2">
+              <i class="fa-solid fa-book-open-reader text-purple-700"></i> E-Flipbook Laporan Penuh Lencana Kemahiran
+            </h2>
+          </div>
+          <a href="https://heyzine.com/flip-book/f636f421f4.html" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-bold px-4 py-2 bg-purple-50 hover:bg-purple-100 text-purple-900 rounded-xl transition border border-purple-200 w-fit">
+            <i class="fa-solid fa-arrow-up-right-from-square mr-2 text-purple-700"></i> Buka Di Tab Baru
+          </a>
+        </div>
+
+        <!-- Bekas Responsif Iframe Flipbook -->
+        <div class="relative w-full max-w-5xl mx-auto rounded-2xl overflow-hidden border border-slate-200 shadow-inner bg-slate-900 h-[500px] sm:h-[650px] lg:h-[720px]">
+          <iframe 
+            allowfullscreen="allowfullscreen" 
+            allow="autoplay; fullscreen; clipboard-write" 
+            scrolling="no" 
+            class="w-full h-full border-0"
+            src="https://heyzine.com/flip-book/f636f421f4.html"
+            title="E-Flipbook Laporan Penuh">
+          </iframe>
+        </div>
+
+        <p class="text-slate-500 text-xs mt-4 text-center italic">
+          <i class="fa-solid fa-circle-info mr-1 text-purple-600"></i> Anda boleh menyelak halaman buku secara langsung pada paparan di atas atau tekan butang skrin penuh di bahagian bawah flipbook.
+        </p>
+      </div>
+    </section>
+
+        <p class="text-stone-400 text-[11px] mt-2 text-center italic">
+          <i class="fa-solid fa-circle-info mr-1"></i> Anda boleh menyelak halaman buku secara langsung pada paparan di atas atau tekan butang skrin penuh di bahagian bawah flipbook.
+        </p>
+      </div>
   <footer class="bg-slate-900 text-sky-200/70 py-8 border-t border-sky-900 text-xs no-print">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-3">
@@ -575,6 +974,136 @@
   <script>
     // Inisialisasi ikon Lucide
     lucide.createIcons();
+
+    // Data kronologi Road Map ke Arah Anugerah Baden Powell (BPA)
+    const roadmapStages = [
+      {
+        stage: "PERINGKAT 01",
+        title: "Lencana Keahlian",
+        duration: "2 Oktober 2024 • Pelantikan Rasmi",
+        colorClass: "bg-sky-600",
+        tagClass: "bg-sky-600 text-white",
+        icon: "shield-check",
+        activities: [
+          "<strong>Pelantikan Rasmi Kelana:</strong> Dilantik secara rasmi sebagai ahli Pengakap Kelana Negeri Kelanasiswa Malaysia Daerah PTSS pada 2 Oktober 2024 (No. Sijil Kelana: <code>SPK-060428090014-C2B34</code>).",
+          "<strong>Kursus Kemahiran Kelana (3K) & Vigil:</strong> Mengikuti sesi pengenalan asas kepengakapan serta proses mengenal diri (<em>Vigil</em>) semasa Kursus Kemahiran Kelana (3K) Sesi I 2024/2025 pada 27–29 September 2024."
+        ]
+      },
+      {
+        stage: "PERINGKAT 02",
+        title: "Lencana Kemahiran",
+        duration: "Sept 2024 – Sept 2026 • Jumlah: 12 Malam Perkhemahan",
+        colorClass: "bg-amber-500",
+        tagClass: "bg-amber-500 text-slate-950",
+        icon: "wrench",
+        activities: [
+          "<strong>Kursus Kemahiran Kelana (3K) Sesi I 2024/2025 (27–29 Sept 2024):</strong> Menyertai Krew Bravo dalam perkhemahan, pembinaan 10 gajet & model projek perintis (menara), orienteering, kawad kaki/tongkat, dan ikhtiar hidup (roti lilit & telur dalam tomato).",
+          "<strong>Malaysian Polytechnic Rovers Challenge (MaIPRO) 2024 (11–14 Okt 2024):</strong> Cabaran amali merangkumi <em>glamping campsite</em>, diorama, pertolongan cemas, pemadaman kebakaran, orienteering, dan <em>backwoods cooking</em>.",
+          "<strong>MaIPRO 2025 (30 Mei – 4 Jun 2025):</strong> Berkhemah di Port Dickson bagi cabaran <em>YUNGA The Ocean Challenge Badge</em>; kontinjen PTSS berjaya merangkul <strong>Juara Keseluruhan</strong>.",
+          "<strong>Urusetia Kursus Kemahiran Kelana (3K) 2026:</strong> Bertugas dalam pengurusan program (27–29 Mac 2026) serta menjadi JK Fotografi, Juri Model Projek Perintis, dan JK Slot Pertolongan Cemas (18–20 Sept 2026)."
+        ]
+      },
+      {
+        stage: "PERINGKAT 03",
+        title: "Lencana Perkhidmatan",
+        duration: "Okt 2024 – Okt 2026 • Jumlah: 323 Jam",
+        colorClass: "bg-blue-600",
+        tagClass: "bg-blue-600 text-white",
+        icon: "heart-handshake",
+        activities: [
+          "<strong>Kursus Kecekapan & Keselamatan:</strong> Mengikuti sesi Pengurusan Risiko dan Simulasi Bencana bersama Jabatan Bomba dan Penyelamat (3 Jun 2025) serta Kursus Pertolongan Cemas (balutan & CPR) bersama Angkatan Pertahanan Awam Malaysia (19 Sept 2026).",
+          "<strong>Khidmat Masyarakat & Bencana:</strong> Sukarelawan Banjir Kangar (29 Nov 2025 – 8 jam), gotong-royong pembersihan (Kuarters PSA, Sungai Bukit Jernih, Masjid Al-Imran, Pantai Teluk Kemang, dan laluan trek Perlis Mountain Day), serta program komuniti di SK Jejawi, Sumbangan Bantuan Persekolahan B40, dan edaran Bubur Lambuk.",
+          "<strong>Urusetia & Fasilitator Program (24 Program):</strong> Bertugas dalam 24 program berskala institusi hingga kebangsaan/antarabangsa, termasuk AJK Keselamatan & Trafik Jambori Pengakap Peringkat Kebangsaan 2024 (70 jam), JOTA-JOTI Kebangsaan 2025, Majlis Penganugerahan BPA KSM 2025, serta urusetia/fasilitator kem pelajar (MRSM Beseri, MRSM Lenggong, Kolej Tunku Kurshiah, dan Program Belajar Sarjana)."
+        ]
+      },
+      {
+        stage: "PERINGKAT 04",
+        title: "Lencana Pengembaraan",
+        duration: "26 – 28 Disember 2025 • Jarak: 898 km (Berkereta)",
+        colorClass: "bg-cyan-600",
+        tagClass: "bg-cyan-600 text-white",
+        icon: "map",
+        activities: [
+          "<strong>Program Kembara Pesisir ke Pedalaman (Perlis – Kelantan – Terengganu):</strong> Penjelajahan berkereta selama 3 hari 2 malam sejauh 898 km bersama 2 ahli krew lain (bertugas sebagai JK Dokumen & Multimedia / Pengarah Program).",
+          "<strong>Kajian Lapangan Sosioekonomi (12 Lokasi):</strong> Mendokumentasikan hubungan bentuk muka bumi terhadap ekonomi penduduk di 12 lokasi merangkumi kawasan tasik/bukit (Tasik Banding, Lata Kolam Air Deru Ecopark), kawasan pesisir pantai/jeti (PCB, Pantai Irama, Tok Bali, Besut, Pantai Bisikan Bayu, Pantai Penarik, Seberang Takir, Kuala Nerus, Tumpat), dan kawasan muara/pedalaman (Kuala Terengganu, Jerteh)."
+        ]
+      },
+      {
+        stage: "PERINGKAT 05",
+        title: "Lencana Kepimpinan (Menuju Anugerah BPA)",
+        duration: "2024 – 2026 • Pentadbiran & Anugerah",
+        colorClass: "bg-indigo-600",
+        tagClass: "bg-indigo-600 text-white",
+        icon: "crown",
+        activities: [
+          "<strong>Jawatan Kepimpinan:</strong> Dilantik sebagai <strong>Exco Pentadbiran</strong>, Sekretariat Pengakap Kelana Daerah PTSS bagi Sesi 2024/2025.",
+          "<strong>Kursus Pengurusan:</strong> Menghadiri Program Pengurusan Organisasi Peringkat Negeri Perlis anjuran JBSN Perlis di Gua Kelam (31 Julai – 2 Ogos 2026).",
+          "<strong>Pencapaian Anugerah:</strong> Menerima <strong>Anugerah Remaja Perdana Rakan Muda (ARPRM)</strong> Peringkat Gangsa (2025) dan Peringkat Perak (2026).",
+          "<strong>Pengurusan & Penganjuran Projek:</strong> Menjadi Jawatankuasa Pelaksana (JK Keselamatan & Kebajikan) bagi Program Mendaki & Rekreasi Alam di Bukit Tok Dun (11 Okt 2025) serta JK Pengurusan Tempat bagi Kursus Pertolongan Cemas (19 Sept 2026)."
+        ]
+      }
+    ];
+
+    let currentRoadmapIndex = 0;
+
+    function openRoadmapModal(index) {
+      currentRoadmapIndex = index;
+      const data = roadmapStages[index];
+      if (!data) return;
+
+      const modal = document.getElementById('roadmapModal');
+      const stageTag = document.getElementById('modalStageTag');
+      const durationEl = document.getElementById('modalDuration');
+      const titleEl = document.getElementById('modalTitle');
+      const iconBox = document.getElementById('modalBadgeIcon');
+      const listEl = document.getElementById('modalActivitiesList');
+      const counterEl = document.getElementById('modalCounter');
+
+      stageTag.textContent = data.stage;
+      durationEl.textContent = data.duration;
+      titleEl.textContent = data.title;
+      counterEl.textContent = `${index + 1} / ${roadmapStages.length}`;
+      iconBox.innerHTML = `<i data-lucide="${data.icon}" class="w-6 h-6"></i>`;
+
+      listEl.innerHTML = data.activities.map(item => `
+        <li class="flex items-start gap-3 bg-white p-3.5 rounded-2xl border border-sky-100 shadow-xs">
+          <span class="w-5 h-5 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center flex-shrink-0 mt-0.5">
+            <i data-lucide="check" class="w-3.5 h-3.5"></i>
+          </span>
+          <span class="leading-relaxed">${item}</span>
+        </li>
+      `).join('');
+
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.classList.add('overflow-hidden');
+      lucide.createIcons();
+    }
+
+    function closeRoadmapModal() {
+      const modal = document.getElementById('roadmapModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function closeRoadmapModalOnBackdrop(event) {
+      if (event.target.id === 'roadmapModal') {
+        closeRoadmapModal();
+      }
+    }
+
+    function stepRoadmapModal(delta) {
+      const nextIndex = (currentRoadmapIndex + delta + roadmapStages.length) % roadmapStages.length;
+      openRoadmapModal(nextIndex);
+    }
+
+    // Tutup pop-up menggunakan kekunci ESC
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeRoadmapModal();
+      }
+    });
 
     // Fungsi pemuat naik dan pratonton segera gambar (Profil & Kad Pengakap)
     function previewImage(inputElement, previewImgId) {
