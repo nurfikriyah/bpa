@@ -146,7 +146,21 @@ function closeNoteModal() {
 }
 
 document.getElementById('noteForm').addEventListener('submit', function() {
+
     document.getElementById('noteStatus').classList.remove('hidden');
+
+    // Tutup pop-up selepas 5 saat
+    setTimeout(function() {
+        closeNoteModal();
+
+        // Clear kandungan nota
+        document.getElementById('noteText').value = '';
+
+        // Reset mesej status
+        document.getElementById('noteStatus').classList.add('hidden');
+
+    }, 5000);
+
 });
 </script>
        <!-- TAMAT KOMEN SINI -->
