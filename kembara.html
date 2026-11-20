@@ -111,7 +111,7 @@
 <!-- Tajuk -->
 <!-- Pop-up Nota -->
 <div id="noteModal"
-    class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+    class="fixed inset-0 bg-black/50 z-[9999] hidden items-center justify-center p-4">
 
     <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6">
 
@@ -167,10 +167,12 @@
 <iframe name="emailFrame" class="hidden"></iframe>
 
 <script>
-function openNoteModal() {
-    document.getElementById('noteModal').classList.remove('hidden');
-    document.getElementById('noteModal').classList.add('flex');
+  function openNoteModal() {
+    const modal = document.getElementById('noteModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
 }
+
 
 function closeNoteModal() {
     document.getElementById('noteModal').classList.add('hidden');
