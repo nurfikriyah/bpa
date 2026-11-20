@@ -127,6 +127,39 @@
 
         </div>
     </div>
+
+    
+    <!-- Frame Penghantaran -->
+    <iframe name="emailFrame" class="hidden"></iframe>
+
+    <!-- SCRIPT NOTA -->
+    <script>
+    function openNoteModal() {
+        document.getElementById('noteModal').classList.remove('hidden');
+        document.getElementById('noteModal').classList.add('flex');
+    }
+
+    function closeNoteModal() {
+        document.getElementById('noteModal').classList.add('hidden');
+        document.getElementById('noteModal').classList.remove('flex');
+    }
+
+    document.getElementById('noteForm').addEventListener('submit', function() {
+
+        document.getElementById('noteStatus').classList.remove('hidden');
+
+        setTimeout(function() {
+
+            closeNoteModal();
+
+            document.getElementById('noteText').value = '';
+
+            document.getElementById('noteStatus').classList.add('hidden');
+
+        }, 3000);
+
+    });
+    </script>
     <!-- Kandungan Utama -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
