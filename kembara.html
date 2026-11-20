@@ -110,92 +110,172 @@
 
 <!-- Tajuk -->
 <!-- Pop-up Nota -->
+<!-- POP-UP NOTA PENILAI BPA -->
 <div id="noteModal"
-    class="fixed inset-0 bg-black/50 z-[9999] hidden items-center justify-center p-4">
+    class="fixed inset-0 z-[9999] hidden items-center justify-center
+           bg-black/50 backdrop-blur-sm p-3 sm:p-5 overflow-y-auto">
 
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6">
+    <!-- Modal Container -->
+    <div class="bg-white rounded-2xl shadow-2xl
+                w-full max-w-lg my-auto
+                max-h-[90vh] overflow-y-auto">
 
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-xl font-bold text-stone-800">
+        <!-- Header Modal -->
+        <div class="flex items-center justify-between
+                    border-b border-stone-200 p-4 sm:p-5">
+
+            <h3 class="text-lg sm:text-xl font-bold text-stone-800">
+                <i class="fa-solid fa-pen-to-square text-amber-500 mr-2"></i>
                 Nota Penilai BPA
             </h3>
-            <button onclick="closeNoteModal()"
-                class="text-gray-500 hover:text-red-500 text-2xl">
+
+            <button type="button"
+                onclick="closeNoteModal()"
+                class="text-stone-500 hover:text-red-500
+                       text-2xl font-bold px-2"
+                aria-label="Tutup">
                 &times;
             </button>
         </div>
 
-        <form id="noteForm"
-            action="https://script.google.com/macros/s/AKfycbw435vNcEZkd0OwaHK0qlgiu2xaDDOebtFGrVqWmUu_qGIAbsG9W-QkLyFGjAiHd_Zh/exec"
-            method="POST"
-            target="emailFrame">
+        <!-- Modal Body -->
+        <div class="p-4 sm:p-5">
 
-            <label class="block text-sm font-semibold mb-2">
-                Catatan / Komen
-            </label>
+            <form id="noteForm"
+                action="https://script.google.com/macros/s/AKfycbw435vNcEZkd0OwaHK0qlgiu2xaDDOebtFGrVqWmUu_qGIAbsG9W-QkLyFGjAiHd_Zh/exec"
+                method="POST"
+                target="emailFrame">
 
-            <textarea name="note"
-                id="noteText"
-                rows="6"
-                required
-                placeholder="Masukkan nota atau komen penilai di sini..."
-                class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-amber-400 outline-none"></textarea>
+                <label for="noteText"
+                    class="block text-sm font-semibold text-stone-700 mb-2">
+                    Catatan / Komen
+                </label>
 
-            <div class="flex justify-end gap-2 mt-5">
-                <button type="button"
-                    onclick="closeNoteModal()"
-                    class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">
-                    Batal
-                </button>
+                <textarea name="note"
+                    id="noteText"
+                    rows="6"
+                    required
+                    placeholder="Masukkan nota atau komen penilai di sini..."
+                    class="w-full border border-gray-300 rounded-xl p-3
+                           focus:ring-2 focus:ring-amber-400
+                           focus:border-amber-400 outline-none
+                           resize-y text-sm sm:text-base"
+                ></textarea>
 
-                <button type="submit"
-                    class="px-5 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold">
-                    <i class="fa-solid fa-paper-plane mr-2"></i>
-                    Hantar Nota
-                </button>
-            </div>
-        </form>
+                <!-- Status -->
+                <p id="noteStatus"
+                    class="text-sm text-green-600 mt-3 hidden">
+                    <i class="fa-solid fa-circle-check mr-1"></i>
+                    Nota telah diserahkan. Pop-up akan ditutup dalam 5 saat.
+                </p>
 
-        <p id="noteStatus" class="text-sm text-green-600 mt-3 hidden">
-            Permintaan penghantaran nota telah dihantar.
-        </p>
+                <!-- Butang -->
+                <div class="flex flex-col-reverse sm:flex-row
+                            justify-end gap-2 mt-5">
 
+                    <button type="button"
+                        onclick="closeNoteModal()"
+                        class="px-5 py-3 rounded-lg bg-stone-200
+                               hover:bg-stone-300 text-stone-800
+                               font-semibold transition">
+                        Batal
+                    </button>
+
+                    <button type="submit"
+                        id="submitNoteBtn"
+                        class="px-5 py-3 rounded-lg bg-amber-500
+                               hover:bg-amber-600 text-white
+                               font-semibold shadow-md transition">
+                        <i class="fa-solid fa-paper-plane mr-2"></i>
+                        Hantar Nota
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
     </div>
 </div>
+
+<!-- Frame Penghantaran -->
+<iframe name="emailFrame" class="hidden"></iframe>
 
 <!-- Frame penghantaran -->
 <iframe name="emailFrame" class="hidden"></iframe>
 
 <script>
-  function openNoteModal() {
+
+function openNoteModal() {
     const modal = document.getElementById('noteModal');
+
     modal.classList.remove('hidden');
     modal.classList.add('flex');
-}
 
+    document.body.style.overflow = 'hidden';
+
+    document.getElementById('noteText').focus();
+}
 
 function closeNoteModal() {
-    document.getElementById('noteModal').classList.add('hidden');
-    document.getElementById('noteModal').classList.remove('flex');
+    const modal = document.getElementById('noteModal');
+
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
+
+    document.body.style.overflow = '';
+
+    // Clear nota
+    document.getElementById('noteText').value = '';
+
+    // Reset status
+    document.getElementById('noteStatus').classList.add('hidden');
+
+    // Aktifkan semula butang
+    document.getElementById('submitNoteBtn').disabled = false;
 }
 
+
+// Hantar Nota
 document.getElementById('noteForm').addEventListener('submit', function() {
 
+    const submitBtn = document.getElementById('submitNoteBtn');
+
+    // Elakkan klik berulang
+    submitBtn.disabled = true;
+
+    // Paparkan status
     document.getElementById('noteStatus').classList.remove('hidden');
 
-    // Tutup pop-up selepas 5 saat
+    // Tutup modal selepas 5 saat
     setTimeout(function() {
+
         closeNoteModal();
 
-        // Clear kandungan nota
-        document.getElementById('noteText').value = '';
-
-        // Reset mesej status
-        document.getElementById('noteStatus').classList.add('hidden');
-
-    }, 3000);
+    }, 5000);
 
 });
+
+
+// Klik kawasan luar modal untuk tutup
+document.getElementById('noteModal').addEventListener('click', function(e) {
+
+    if (e.target === this) {
+        closeNoteModal();
+    }
+
+});
+
+
+// Tekan Escape untuk tutup
+document.addEventListener('keydown', function(e) {
+
+    if (e.key === 'Escape') {
+        closeNoteModal();
+    }
+
+});
+
 </script>
        <!-- TAMAT KOMEN SINI -->
         <!-- Menu Desktop -->
