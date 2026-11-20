@@ -1100,43 +1100,67 @@ document.getElementById('noteForm').addEventListener('submit', function() {
   </div>
 
   <!-- Modal 3: Rekod Perak Info -->
-  <div id="modal-silver" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+ <div id="modal-silver" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+
     <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200 my-8">
-      <div class="bg-slate-800 text-white px-6 py-4 flex items-center justify-between">
-        <h3 class="text-base font-bold flex items-center gap-2">
-          <i class="fa-solid fa-medal text-slate-300"></i>
-          Peringkat Perak ARPRM 2026
-        </h3>
-        <button onclick="closeModal('modal-silver')" class="text-white/80 hover:text-white text-lg">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      <div class="p-6 text-sm text-slate-600 space-y-4">
-        <p>
-          Calon <strong>Nur Fikriyah binti Zulkifli</strong> telah menaik taraf pencapaian Rakan Muda daripada Anugerah Gangsa (2025) ke <strong>Anugerah Perak (2026)</strong>.
-        </p>
-        <div class="bg-slate-100 p-4 rounded-xl border border-slate-200 space-y-2 text-xs">
-          <div class="flex justify-between">
-            <span class="text-slate-500">Status Pencapaian:</span>
-            <span class="font-bold text-slate-800">Tahap Perak (Silver Award)</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-slate-500">Tahun:</span>
-            <span class="font-bold text-slate-800">2026</span>
-          </div>
-          <div class="flex justify-between">
-            <span class="text-slate-500">Komponen Utama:</span>
-            <span class="font-bold text-slate-800">Khidmat Masyarakat, Kemahiran, Rekreasi</span>
-          </div>
+
+        <!-- Header -->
+        <div class="bg-slate-800 text-white px-6 py-4 flex items-center justify-between">
+            <h3 class="text-base font-bold flex items-center gap-2">
+                <i class="fa-solid fa-medal text-slate-300"></i>
+                Peringkat Perak ARPRM 2026
+            </h3>
+
+            <button onclick="closeModal('modal-silver')" class="text-white/80 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
-      </div>
-      <div class="bg-slate-50 px-6 py-3 flex justify-end">
-        <button onclick="closeModal('modal-silver')" class="px-4 py-2 bg-slate-800 text-white text-xs font-semibold rounded-lg">
-          Tutup
-        </button>
-      </div>
+
+        <!-- Imej Perak -->
+        <div class="bg-slate-50 flex justify-center p-4">
+            <img
+                src="perak.png"
+                alt="Anugerah Perak ARPRM"
+                class="w-full max-w-xs h-auto object-contain rounded-lg shadow-sm"
+            >
+        </div>
+
+        <!-- Kandungan -->
+        <div class="p-6 text-sm text-slate-600 space-y-4">
+
+            <p>
+                Calon <strong>Nur Fikriyah binti Zulkifli</strong> telah menaik taraf pencapaian Rakan Muda daripada Anugerah Gangsa (2025) ke <strong>Anugerah Perak (2026)</strong>.
+            </p>
+
+            <div class="bg-slate-100 p-4 rounded-xl border border-slate-200 space-y-2 text-xs">
+
+                <div class="flex justify-between gap-3">
+                    <span class="text-slate-500">Status Pencapaian:</span>
+                    <span class="font-bold text-slate-800 text-right">Tahap Perak (Silver Award)</span>
+                </div>
+
+                <div class="flex justify-between gap-3">
+                    <span class="text-slate-500">Tahun:</span>
+                    <span class="font-bold text-slate-800">2026</span>
+                </div>
+
+                <div class="flex justify-between gap-3">
+                    <span class="text-slate-500">Komponen Utama:</span>
+                    <span class="font-bold text-slate-800 text-right">Khidmat Masyarakat, Kemahiran, Rekreasi</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-6 py-3 flex justify-end">
+            <button onclick="closeModal('modal-silver')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
+                Tutup
+            </button>
+        </div>
+
     </div>
-  </div>
+</div>>
 
   <!-- Modal 4: Watikah Pelantikan SPKD -->
   <div id="modal-watikah" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
