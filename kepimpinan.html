@@ -1064,31 +1064,43 @@ document.getElementById('noteForm').addEventListener('submit', function() {
       
       <div class="p-8 bg-amber-50/20 flex justify-center">
         <div class="bg-white w-full max-w-lg p-8 rounded-lg shadow-inner cert-border text-center space-y-4">
-          <div class="flex items-center justify-center gap-2 text-xs font-bold text-slate-800 uppercase">
-            <span class="w-8 h-8 rounded-full bg-red-600 text-white flex items-center justify-center text-[10px] font-black">KBS</span>
-            <span>Kementerian Belia dan Sukan Malaysia</span>
-          </div>
-          <p class="text-xs text-slate-600 mt-2">Dengan ini mengiktiraf bahawa</p>
-          <h4 class="text-lg font-bold text-slate-900 border-b border-amber-300 pb-1 font-serif">
-            NUR FIKRIYAH BINTI ZULKIFLI
-          </h4>
-          <p class="text-xs text-slate-600">telah berjaya diiktiraf</p>
-          <div class="bg-gradient-to-r from-amber-100 via-amber-200 to-amber-100 border border-amber-300 py-3 px-4 rounded-xl">
-            <span class="block text-xs uppercase font-semibold text-amber-900">Peringkat Pencapaian</span>
-            <span class="block text-xl font-black text-amber-950 tracking-wider">ANUGERAH GANGSA (2025) & PERAK (2026)</span>
-            <span class="text-[11px] text-amber-800 font-medium">The Duke of Edinburgh's International Award Malaysia</span>
-          </div>
-          <div class="pt-6 border-t border-slate-200 flex justify-between items-end text-left">
-            <div>
-              <span class="text-[10px] text-slate-400 block">Pengesahan Pihak Berkuasa:</span>
-              <span class="text-xs font-bold text-slate-800">AZURA BINTI ABIDIN</span>
-              <span class="block text-[10px] text-slate-500">Ketua Pengarah JBSN / Pengerusi ARPRM Malaysia</span>
-            </div>
-            <div class="text-[10px] font-bold text-amber-900 bg-amber-100 px-2 py-1 rounded">
-              RAKAN MUDA
-            </div>
-          </div>
+          <div id="modal-silver" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200 my-8">
+
+        <!-- Header -->
+        <div class="bg-slate-800 text-white px-6 py-4 flex items-center justify-between">
+            <h3 class="text-base font-bold flex items-center gap-2">
+                <i class="fa-solid fa-medal text-slate-300"></i>
+                Peringkat GANGSA ARPRM 2025
+            </h3>
+
+            <button onclick="closeModal('modal-silver')" class="text-white/80 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
+
+        <!-- Imej Perak -->
+        <div class="bg-slate-50 flex justify-center p-4">
+            <img
+                src="gangsa.png"
+                alt="Anugerah GANGSA ARPRM"
+                class="w-full max-w-xs h-auto object-contain rounded-lg shadow-sm"
+            >
+        </div>
+
+        <!-- Kandungan -->
+     
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-6 py-3 flex justify-end">
+            <button onclick="closeModal('modal-silver')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
+                Tutup
+            </button>
+        </div>
+
+    </div>
+</div>
       </div>
 
       <div class="bg-slate-100 px-6 py-3 flex justify-end">
@@ -1132,24 +1144,7 @@ document.getElementById('noteForm').addEventListener('submit', function() {
                 Calon <strong>Nur Fikriyah binti Zulkifli</strong> telah menaik taraf pencapaian Rakan Muda daripada Anugerah Gangsa (2025) ke <strong>Anugerah Perak (2026)</strong>.
             </p>
 
-            <div class="bg-slate-100 p-4 rounded-xl border border-slate-200 space-y-2 text-xs">
-
-                <div class="flex justify-between gap-3">
-                    <span class="text-slate-500">Status Pencapaian:</span>
-                    <span class="font-bold text-slate-800 text-right">Tahap Perak (Silver Award)</span>
-                </div>
-
-                <div class="flex justify-between gap-3">
-                    <span class="text-slate-500">Tahun:</span>
-                    <span class="font-bold text-slate-800">2026</span>
-                </div>
-
-                <div class="flex justify-between gap-3">
-                    <span class="text-slate-500">Komponen Utama:</span>
-                    <span class="font-bold text-slate-800 text-right">Khidmat Masyarakat, Kemahiran, Rekreasi</span>
-                </div>
-
-            </div>
+           
         </div>
 
         <!-- Footer -->
@@ -1176,37 +1171,43 @@ document.getElementById('noteForm').addEventListener('submit', function() {
       </div>
       
       <div class="p-8 bg-purple-50/20 flex justify-center">
-        <div class="bg-white w-full max-w-lg p-8 rounded-lg shadow-inner cert-border text-center space-y-4">
-          <div class="text-xs uppercase tracking-widest text-slate-500 font-bold">
-            Politeknik Malaysia<br>
-            <span class="text-slate-900 font-black">Tuanku Syed Sirajuddin</span>
-          </div>
-          <h4 class="text-2xl font-serif text-purple-900 font-black tracking-wide uppercase pt-2">
-            Watikah Pelantikan
-          </h4>
-          <p class="text-xs text-slate-600">Adalah dengan ini dilantik</p>
-          <div>
-            <h4 class="text-lg font-bold text-slate-900 font-serif">NUR FIKRIYAH BINTI ZULKIFLI</h4>
-            <span class="text-xs font-mono text-slate-500">No. KP: 060428-09-0014</span>
-          </div>
-          <p class="text-xs text-slate-600">Sebagai</p>
-          <div class="bg-purple-100/70 border border-purple-300 py-2 px-4 rounded-xl">
-            <span class="block text-base font-black text-purple-950 tracking-wider">EXCO PENTADBIRAN</span>
-            <span class="text-[11px] text-purple-800 font-medium">Sekretariat Pengakap Kelana Daerah (SPKD), Kelanasiswa Malaysia</span>
-          </div>
-          <p class="text-xs text-slate-600">
-            mulai <strong>Sesi I 2024/2025</strong> hingga <strong>Sesi II 2024/2025</strong>
-          </p>
-          <div class="pt-6 border-t border-slate-200 flex justify-between items-end text-left">
-            <div>
-              <span class="text-xs font-bold text-slate-800">FARIHAN ELYANA BINTI ZAHARI</span>
-              <span class="block text-[10px] text-slate-500">Pesuruhjaya Pengakap Daerah Kelanasiswa Malaysia PTSS</span>
-            </div>
-            <div class="text-[10px] font-bold text-purple-900 bg-purple-100 px-2 py-1 rounded">
-              PENGAKAP KELANA
-            </div>
-          </div>
+       <div id="modal-silver" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200 my-8">
+
+        <!-- Header -->
+        <div class="bg-slate-800 text-white px-6 py-4 flex items-center justify-between">
+            <h3 class="text-base font-bold flex items-center gap-2">
+                <i class="fa-solid fa-medal text-slate-300"></i>
+                EXCO PENTADBIRAN
+Sekretariat Pengakap Kelana Daerah (SPKD), Kelanasiswa Malaysia
+            </h3>
+
+            <button onclick="closeModal('modal-silver')" class="text-white/80 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
         </div>
+
+        <!-- Imej Perak -->
+        <div class="bg-slate-50 flex justify-center p-4">
+            <img
+                src="SPKD.png"
+                alt="Watikah Perlantikan SPKD"
+                class="w-full max-w-xs h-auto object-contain rounded-lg shadow-sm"
+            >
+        </div>
+
+      
+
+        <!-- Footer -->
+        <div class="bg-slate-50 px-6 py-3 flex justify-end">
+            <button onclick="closeModal('modal-silver')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
+                Tutup
+            </button>
+        </div>
+
+    </div>
+</div>
       </div>
 
       <div class="bg-slate-100 px-6 py-3 flex justify-end">
