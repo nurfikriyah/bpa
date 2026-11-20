@@ -100,32 +100,113 @@
             </span>
           </div>
         </a>
-  
-        <!-- Menu Desktop -->
-        <nav class="hidden md:flex items-center gap-2">
-          <a href="#ringkasan" class="px-3.5 py-2 rounded-xl text-sm font-bold text-slate-600 hover:text-brand-orange hover:bg-orange-50 transition">Ringkasan</a>
-          <a href="#objektif" class="px-3.5 py-2 rounded-xl text-sm font-bold text-slate-600 hover:text-brand-orange hover:bg-orange-50 transition">Objektif</a>
-          <a href="#jadual" class="px-3.5 py-2 rounded-xl text-sm font-bold text-slate-600 hover:text-brand-orange hover:bg-orange-50 transition">Tentatif & Log</a>
-          <a href="#kajian" class="px-3.5 py-2 rounded-xl text-sm font-bold text-slate-600 hover:text-brand-orange hover:bg-orange-50 transition">Kajian Lapangan</a>
-          <a href="#refleksi" class="px-3.5 py-2 rounded-xl text-sm font-bold text-slate-600 hover:text-brand-orange hover:bg-orange-50 transition">Refleksi</a>
-        </nav>
-
-        <!-- Butang Mobile Menu -->
-        <button id="mobile-toggle" aria-label="Buka Menu" class="md:hidden w-11 h-11 rounded-xl bg-amber-100 text-brand-orange flex items-center justify-center text-xl focus:outline-none hover:bg-amber-200">
-          <i class="fa-solid fa-bars-staggered"></i>
-        </button>
+  <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3 bg-white/10 backdrop-blur-sm p-4 rounded-xl border border-white/10">
+                    <div class="text-xs sm:text-sm">
+                        <p class="text-slate-300">Disahkan oleh:</p>
+                        <p class="font-semibold text-white">Dr. Azizee bin Aziz</p>
+                        <p class="text-indigo-200 text-xs">Pesuruhjaya Daerah KSM PTSS</p>
+                    </div>                </div>
+                <!-- Butang Nota Penilai BPA -->
+            <button onclick="openNoteModal()"
+                class="bg-amber-500 hover:bg-amber-600 text-white px-4 py-2 rounded-lg shadow-md font-semibold text-sm">
+                <i class="fa-solid fa-pen-to-square mr-2"></i>
+                ~ Komen di sini ~ Penilai BPA
+            </button>
       </div>
     </div>
 
-    <!-- Mobile Dropdown -->
-    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-6 py-4 space-y-2 shadow-lg">
-      <a href="#ringkasan" class="block py-2.5 font-bold text-slate-700 hover:text-brand-orange">Ringkasan Projek</a>
-      <a href="#objektif" class="block py-2.5 font-bold text-slate-700 hover:text-brand-orange">Objektif Kembara</a>
-      <a href="#jadual" class="block py-2.5 font-bold text-slate-700 hover:text-brand-orange">Tentatif & Peta Laluan</a>
-      <a href="#kajian" class="block py-2.5 font-bold text-slate-700 hover:text-brand-orange">Kajian Bentuk Muka Bumi</a>
-      <a href="#refleksi" class="block py-2.5 font-bold text-slate-700 hover:text-brand-orange">Refleksi Kendiri</a>
-    </div>
+ 
   </header>
+   <!-- POP-UP NOTA PENILAI -->
+    <div id="noteModal"
+        class="fixed inset-0 bg-black/50 z-50 hidden items-center justify-center p-4">
+
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg p-6">
+
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-stone-800">
+                    Nota Penilai BPA
+                </h3>
+
+                <button onclick="closeNoteModal()"
+                    class="text-gray-500 hover:text-red-500 text-2xl">
+                    &times;
+                </button>
+            </div>
+
+            <form id="noteForm"
+                action="https://script.google.com/macros/s/AKfycbw435vNcEZkd0OwaHK0qlgiu2xaDDOebtFGrVqWmUu_qGIAbsG9W-QkLyFGjAiHd_Zh/exec"
+                method="POST"
+                target="emailFrame">
+
+                <label class="block text-sm font-semibold mb-2">
+                    Catatan / Komen
+                </label>
+
+                <textarea name="note"
+                    id="noteText"
+                    rows="6"
+                    required
+                    placeholder="Masukkan nota atau komen penilai di sini..."
+                    class="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-amber-400 outline-none"></textarea>
+
+                <div class="flex justify-end gap-2 mt-5">
+
+                    <button type="button"
+                        onclick="closeNoteModal()"
+                        class="px-4 py-2 rounded-lg bg-gray-200 hover:bg-gray-300">
+                        Batal
+                    </button>
+
+                    <button type="submit"
+                        class="px-5 py-2 rounded-lg bg-amber-500 hover:bg-amber-600 text-white font-semibold">
+                        <i class="fa-solid fa-paper-plane mr-2"></i>
+                        Hantar Nota
+                    </button>
+
+                </div>
+            </form>
+
+            <p id="noteStatus" class="text-sm text-green-600 mt-3 hidden">
+                Permintaan penghantaran nota telah dihantar.
+            </p>
+
+        </div>
+    </div>
+
+    
+    <!-- Frame Penghantaran -->
+    <iframe name="emailFrame" class="hidden"></iframe>
+
+    <!-- SCRIPT NOTA -->
+    <script>
+    function openNoteModal() {
+        document.getElementById('noteModal').classList.remove('hidden');
+        document.getElementById('noteModal').classList.add('flex');
+    }
+
+    function closeNoteModal() {
+        document.getElementById('noteModal').classList.add('hidden');
+        document.getElementById('noteModal').classList.remove('flex');
+    }
+
+    document.getElementById('noteForm').addEventListener('submit', function() {
+
+        document.getElementById('noteStatus').classList.remove('hidden');
+
+        setTimeout(function() {
+
+            closeNoteModal();
+
+            document.getElementById('noteText').value = '';
+
+            document.getElementById('noteStatus').classList.add('hidden');
+
+        }, 3000);
+
+    });
+    </script>
+  <!-- tamat POP-UP NOTA PENILAI -->
 
   <main>
     <section id="hero" class="relative pt-12 pb-16 overflow-hidden">
