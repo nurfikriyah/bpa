@@ -305,7 +305,7 @@ document.getElementById('noteForm').addEventListener('submit', function() {
               <th class="py-3.5 px-4 font-semibold">Keterangan Aktiviti / Peranan</th>
               <th class="py-3.5 px-4 font-semibold w-28 text-center">Tahun</th>
               <th class="py-3.5 px-4 font-semibold w-40">Penganjur / Peringkat</th>
-              <th class="py-3.5 px-4 font-semibold w-32 text-center no-print">Tindakan</th>
+              <th class="py-3.5 px-4 font-semibold w-32 text-center no-print">Bukti</th>
             </tr>
           </thead>
           <tbody class="divide-y divide-slate-100 text-sm">
@@ -441,84 +441,7 @@ document.getElementById('noteForm').addEventListener('submit', function() {
 
     </section>
 
-    <!-- SECTION 2: SIJIL PENGIKTIRAFAN & WATIKAH RASMI (GALLERY / MODAL PREVIEWS) -->
-    <section id="pencapaian" class="space-y-6">
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-200 pb-4">
-        <div>
-          <span class="text-xs font-bold text-brand-700 tracking-wider uppercase">Sijil & Dokumen Mandatori</span>
-          <h2 class="text-2xl font-bold text-slate-900 font-serif">Koleksi Bukti & Sijil Pelantikan</h2>
-        </div>
-        <p class="text-xs text-slate-500">Klik kad untuk melihat paparan transkrip sijil rasmi yang disahkan.</p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-
-        <!-- Card 1: Sijil JBSN Pengurusan Organisasi -->
-        <div onclick="openModal('modal-jbsn')" class="group cursor-pointer bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-xl hover:border-brand-500 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-brand-800">Peringkat Negeri</span>
-              <span class="text-xs text-slate-400 font-medium">31 Jul - 2 Ogos 2026</span>
-            </div>
-            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-brand-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-hotel"></i>
-            </div>
-            <h3 class="font-bold text-slate-900 text-lg group-hover:text-brand-700 transition-colors">Program Pengurusan Organisasi 2026</h3>
-            <p class="text-xs text-slate-600 mt-2 line-clamp-2">
-              Dianjurkan oleh Jabatan Belia & Sukan Negeri Perlis (JBSN) bertempat di ClubRock, Gua Kelam Perlis.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-brand-700">
-            <span>Disahkan oleh Pengarah JBSN</span>
-            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-          </div>
-        </div>
-
-        <!-- Card 2: ARPRM Gangsa & Perak -->
-        <div onclick="openModal('modal-bronze')" class="group cursor-pointer bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-xl hover:border-amber-500 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900">Kebangsaan / Antarabangsa</span>
-              <span class="text-xs text-slate-400 font-medium">Tahun 2025 & 2026</span>
-            </div>
-            <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-award"></i>
-            </div>
-            <h3 class="font-bold text-slate-900 text-lg group-hover:text-amber-700 transition-colors">Anugerah Remaja Perdana Rakan Muda</h3>
-            <p class="text-xs text-slate-600 mt-2">
-              Pengiktirafan Tahap Gangsa (2025) & Tahap Perak (2026) The Duke of Edinburgh's International Award Malaysia.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-amber-800">
-            <span>KBS Malaysia & DofE</span>
-            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-          </div>
-        </div>
-
-        <!-- Card 3: Watikah Exco Pentadbiran SPKD -->
-        <div onclick="openModal('modal-watikah')" class="group cursor-pointer bg-white rounded-2xl border border-slate-200/80 p-6 shadow-sm hover:shadow-xl hover:border-purple-500 transition-all duration-300 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between mb-4">
-              <span class="px-3 py-1 rounded-full text-xs font-bold bg-purple-100 text-purple-900">Watikah PTSS</span>
-              <span class="text-xs text-slate-400 font-medium">Sesi 2024/2025</span>
-            </div>
-            <div class="w-12 h-12 rounded-xl bg-purple-50 text-purple-700 flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
-              <i class="fa-solid fa-user-tie"></i>
-            </div>
-            <h3 class="font-bold text-slate-900 text-lg group-hover:text-purple-700 transition-colors">Exco Pentadbiran Kelanasiswa PTSS</h3>
-            <p class="text-xs text-slate-600 mt-2">
-              Sekretariat Pengakap Kelana Daerah (SPKD) Kelanasiswa Malaysia Politeknik Tuanku Syed Sirajuddin.
-            </p>
-          </div>
-          <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-purple-800">
-            <span>Pesuruhjaya Pengakap Daerah PTSS</span>
-            <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
+  
     <!-- SECTION 3: KERTAS KERJA & PROJEK KEPIMPINAN LENGKAP -->
     <section id="projek" class="space-y-10">
       
@@ -857,81 +780,7 @@ document.getElementById('noteForm').addEventListener('submit', function() {
 
     </section>
 
-    <!-- SECTION 4: DIREKTORI INTERAKTIF SENARAI PESERTA & JABATAN -->
-    <section id="peserta" class="bg-white rounded-2xl border border-slate-200/80 shadow-xl shadow-slate-200/50 p-6 sm:p-8 space-y-6">
-      
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-slate-200 pb-5">
-        <div>
-          <span class="text-xs font-bold text-brand-700 tracking-wider uppercase">Pangkalan Data Rekod Program</span>
-          <h2 class="text-xl sm:text-2xl font-bold text-slate-900 font-serif">Direktori Peserta Yang Dikendalikan</h2>
-          <p class="text-xs text-slate-500 mt-1">Gunakan carian untuk menapis peserta bagi kedua-dua program kepimpinan.</p>
-        </div>
-
-        <!-- Filter Tab -->
-        <div class="inline-flex p-1 bg-slate-100 rounded-xl no-print">
-          <button id="tab-mendaki" onclick="switchTable('mendaki')" class="px-4 py-2 text-xs font-bold rounded-lg bg-white text-slate-900 shadow-sm transition-all">
-            Ekspedisi Bukit Tok Dun (71)
-          </button>
-          <button id="tab-cemas" onclick="switchTable('cemas')" class="px-4 py-2 text-xs font-semibold text-slate-600 hover:text-slate-900 rounded-lg transition-all">
-            Pertolongan Cemas (41)
-          </button>
-        </div>
-      </div>
-
-      <!-- Search & Statistics Bar -->
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div class="relative w-full sm:w-80">
-          <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-          <input 
-            type="text" 
-            id="searchInput" 
-            onkeyup="filterTable()" 
-            placeholder="Cari nama, no. pendaftaran, atau jabatan..." 
-            class="w-full pl-9 pr-4 py-2.5 text-xs rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-brand-500/30 focus:border-brand-500 transition-all"
-          >
-        </div>
-
-        <div class="flex items-center gap-2 text-xs text-slate-500 w-full sm:w-auto justify-end">
-          <span>Memaparkan <span id="visibleCount" class="font-bold text-slate-900">71</span> rekod</span>
-          <span class="text-slate-300">|</span>
-          <span class="inline-flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md">
-            <i class="fa-solid fa-users"></i> PTSS Pelbagai Jabatan
-          </span>
-        </div>
-      </div>
-
-      <!-- Table Wrapper with fixed scroll -->
-      <div class="border border-slate-200 rounded-xl overflow-hidden">
-        <div class="max-h-96 overflow-y-auto custom-scrollbar">
-          <table class="w-full text-left border-collapse text-xs">
-            <thead class="sticky top-0 bg-slate-100 text-slate-700 uppercase font-bold border-b border-slate-200 z-10">
-              <tr>
-                <th class="py-3 px-4 w-14 text-center">Bil.</th>
-                <th class="py-3 px-4 w-36">No. Pendaftaran</th>
-                <th class="py-3 px-4">Nama Peserta</th>
-                <th class="py-3 px-4 w-28 text-center" id="th-extra">Status/Kelas</th>
-                <th class="py-3 px-4 w-24 text-center">Jabatan</th>
-              </tr>
-            </thead>
-            <tbody id="participantTableBody" class="divide-y divide-slate-100">
-              <!-- Content rendered via JavaScript -->
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div class="flex flex-wrap items-center justify-between text-xs text-slate-500 gap-2 pt-2">
-        <div class="flex items-center gap-2">
-          <span class="font-bold text-slate-700">Petunjuk Jabatan:</span>
-          <span class="bg-blue-50 text-blue-700 px-2 py-0.5 rounded">JPH: Pelancongan & Hospitaliti</span>
-          <span class="bg-amber-50 text-amber-700 px-2 py-0.5 rounded">JP: Perdagangan</span>
-          <span class="bg-purple-50 text-purple-700 px-2 py-0.5 rounded">JTMK: Teknologi Maklumat</span>
-          <span class="bg-rose-50 text-rose-700 px-2 py-0.5 rounded">JRKV: Rekabentuk</span>
-        </div>
-        <span class="italic">Sumber: Lampiran Kertas Kerja SPKD PTSS</span>
-      </div>
-
-    </section>
+    
 
     <!-- Flipbook Interaktif Dokumen Asal Laporan Lencana Kepimpinan -->
       <div class="bg-white rounded-xl shadow-md border border-stone-200 p-6 overflow-hidden">
