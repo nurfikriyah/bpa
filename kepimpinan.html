@@ -899,37 +899,20 @@ document.getElementById('noteForm').addEventListener('submit', function() {
   </div>
 
   <!-- Modal 2: Sijil Anugerah Remaja Perdana Rakan Muda (Gangsa & Perak) -->
-  <div id="modal-bronze" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden border border-slate-200 my-8">
-      <div class="bg-amber-900 text-white px-6 py-4 flex items-center justify-between">
-        <h3 class="text-base font-bold flex items-center gap-2">
-          <i class="fa-solid fa-award text-amber-300"></i>
-          Anugerah Remaja Perdana Rakan Muda (ARPRM)
-        </h3>
-        <button onclick="closeModal('modal-bronze')" class="text-white/80 hover:text-white text-lg">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      
-      <div class="p-8 bg-amber-50/20 flex justify-center">
-        <div class="bg-white w-full max-w-lg p-8 rounded-lg shadow-inner cert-border text-center space-y-4">
-          <div id="modal-silver" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-
+  <!-- Modal 2: Sijil Anugerah Remaja Perdana Rakan Muda (Gangsa) -->
+<div id="modal-bronze" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
     <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200 my-8">
-
         <!-- Header -->
-        <div class="bg-slate-800 text-white px-6 py-4 flex items-center justify-between">
+        <div class="bg-amber-900 text-white px-6 py-4 flex items-center justify-between">
             <h3 class="text-base font-bold flex items-center gap-2">
-                <i class="fa-solid fa-medal text-slate-300"></i>
+                <i class="fa-solid fa-award text-amber-300"></i>
                 Peringkat GANGSA ARPRM 2025
             </h3>
-
             <button onclick="closeModal('modal-bronze')" class="text-white/80 hover:text-white text-lg">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-
-        <!-- Imej Perak -->
+        <!-- Imej Gangsa -->
         <div class="bg-slate-50 flex justify-center p-4">
             <img
                 src="gangsa.png"
@@ -937,107 +920,65 @@ document.getElementById('noteForm').addEventListener('submit', function() {
                 class="w-full max-w-xs h-auto object-contain rounded-lg shadow-sm"
             >
         </div>
-
-        <!-- Kandungan -->
-     
-
         <!-- Footer -->
-        <div class="bg-slate-50 px-6 py-3 flex justify-end">
+        <div class="bg-slate-100 px-6 py-3 flex justify-end">
             <button onclick="closeModal('modal-bronze')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
-                Tutup
+                Tutup Paparan
             </button>
         </div>
-
     </div>
 </div>
-      </div>
 
-      <div class="bg-slate-100 px-6 py-3 flex justify-end">
-        <button onclick="closeModal('modal-bronze')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
-          Tutup Paparan
-        </button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal 3: Rekod Perak Info -->
- <div id="modal-silver" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-
+<!-- Modal 3: Rekod Perak Info -->
+<div id="modal-silver" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
     <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200 my-8">
-
         <!-- Header -->
         <div class="bg-slate-800 text-white px-6 py-4 flex items-center justify-between">
             <h3 class="text-base font-bold flex items-center gap-2">
                 <i class="fa-solid fa-medal text-slate-300"></i>
                 Peringkat Perak ARPRM 2026
             </h3>
-
             <button onclick="closeModal('modal-silver')" class="text-white/80 hover:text-white text-lg">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-
-        <!-- Imej Perak -->
+        <!-- Imej Silver (Nama fail telah dibetulkan kepada silver.png) -->
         <div class="bg-slate-50 flex justify-center p-4">
             <img
-                src="perak.png"
+                src="silver.png"
                 alt="Anugerah Perak ARPRM"
                 class="w-full max-w-xs h-auto object-contain rounded-lg shadow-sm"
             >
         </div>
-
         <!-- Kandungan -->
         <div class="p-6 text-sm text-slate-600 space-y-4">
-
             <p>
                 Calon <strong>Nur Fikriyah binti Zulkifli</strong> telah menaik taraf pencapaian Rakan Muda daripada Anugerah Gangsa (2025) ke <strong>Anugerah Perak (2026)</strong>.
             </p>
-
-           
         </div>
-
         <!-- Footer -->
-        <div class="bg-slate-50 px-6 py-3 flex justify-end">
+        <div class="bg-slate-100 px-6 py-3 flex justify-end">
             <button onclick="closeModal('modal-silver')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
-                Tutup
+                Tutup Paparan
             </button>
         </div>
-
     </div>
 </div>
 
-  <!-- Modal 4: Watikah Pelantikan SPKD -->
-  <div id="modal-watikah" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-    <div class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl overflow-hidden border border-slate-200 my-8">
-      <div class="bg-purple-950 text-white px-6 py-4 flex items-center justify-between">
-        <h3 class="text-base font-bold flex items-center gap-2">
-          <i class="fa-solid fa-scroll text-amber-300"></i>
-          Watikah Pelantikan Rasmi PTSS
-        </h3>
-        <button onclick="closeModal('modal-watikah')" class="text-white/80 hover:text-white text-lg">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-      </div>
-      
-      <div class="p-8 bg-purple-50/20 flex justify-center">
-       <div id="modal-silver" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-
+<!-- Modal 4: Watikah Pelantikan SPKD -->
+<div id="modal-watikah" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
     <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl overflow-hidden border border-slate-200 my-8">
-
         <!-- Header -->
-        <div class="bg-slate-800 text-white px-6 py-4 flex items-center justify-between">
+        <div class="bg-purple-950 text-white px-6 py-4 flex items-center justify-between">
             <h3 class="text-base font-bold flex items-center gap-2">
-                <i class="fa-solid fa-medal text-slate-300"></i>
-                EXCO PENTADBIRAN
-Sekretariat Pengakap Kelana Daerah (SPKD), Kelanasiswa Malaysia
+                <i class="fa-solid fa-scroll text-amber-300"></i>
+                EXCO PENTADBIRAN (SPKD)
             </h3>
-
-            <button onclick="closeModal('modal-silver')" class="text-white/80 hover:text-white text-lg">
+            <button onclick="closeModal('modal-watikah')" class="text-white/80 hover:text-white text-lg">
                 <i class="fa-solid fa-xmark"></i>
             </button>
         </div>
-
-        <!-- Imej Perak -->
+        <!-- Imej Watikah -->
         <div class="bg-slate-50 flex justify-center p-4">
             <img
                 src="SPKD.png"
@@ -1045,27 +986,14 @@ Sekretariat Pengakap Kelana Daerah (SPKD), Kelanasiswa Malaysia
                 class="w-full max-w-xs h-auto object-contain rounded-lg shadow-sm"
             >
         </div>
-
-      
-
         <!-- Footer -->
-        <div class="bg-slate-50 px-6 py-3 flex justify-end">
-            <button onclick="closeModal('modal-silver')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
-                Tutup
+        <div class="bg-slate-100 px-6 py-3 flex justify-end">
+            <button onclick="closeModal('modal-watikah')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
+                Tutup Paparan
             </button>
         </div>
-
     </div>
 </div>
-      </div>
-
-      <div class="bg-slate-100 px-6 py-3 flex justify-end">
-        <button onclick="closeModal('modal-watikah')" class="px-4 py-2 bg-slate-800 hover:bg-slate-900 text-white text-xs font-semibold rounded-lg">
-          Tutup Paparan
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- JAVASCRIPT DATA AND INTERACTION LOGIC -->
   <script>
@@ -1290,21 +1218,23 @@ Sekretariat Pengakap Kelana Daerah (SPKD), Kelanasiswa Malaysia
     }
 
     // Modal Control Logic
-    function openModal(id) {
-      const modal = document.getElementById(id);
-      if (modal) {
+    function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
         modal.classList.remove('hidden');
+        modal.classList.add('flex');
         document.body.classList.add('overflow-hidden');
-      }
     }
+}
 
-    function closeModal(id) {
-      const modal = document.getElementById(id);
-      if (modal) {
+function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
         modal.classList.add('hidden');
+        modal.classList.remove('flex');
         document.body.classList.remove('overflow-hidden');
-      }
     }
+}
 
     // Toast message function
     function showToast(msg, icon = 'fa-circle-check') {
@@ -1339,23 +1269,7 @@ Sekretariat Pengakap Kelana Daerah (SPKD), Kelanasiswa Malaysia
       renderTable(pesertaMendaki);
     };
 
-    function openModal(modalId) {
-    const modal = document.getElementById(modalId);
-
-    if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-    }
-}
-
-function closeModal(modalId) {
-    const modal = document.getElementById(modalId);
-
-    if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-    }
-}
+    
   </script>
 </body>
 </html>
